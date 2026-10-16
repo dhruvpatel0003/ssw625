@@ -1,0 +1,22 @@
+# Local dataset (too large for GitHub)
+data/*
+!data/README_DATA.txt
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Editor and system files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temporary analysis files
+*.tmp
+.ipynb_checkpoints/
