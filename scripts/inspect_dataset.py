@@ -1,8 +1,9 @@
 from pathlib import Path
 import pyarrow.parquet as pq
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data"
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data"
+OUTPUT = ROOT / "results" / "tables" / "dataset_schema.txt"
 
 TABLES = [
     "spec_files",
@@ -12,23 +13,35 @@ TABLES = [
     "pr_files",
 ]
 
-def main():
-    for table in TABLES:
-        path = DATA_DIR / f"{table}.parquet"
+OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
-        if not path.exists():
-            print(f"\n[NOT FOUND] {path}")
-            continue
+lines = []
 
-        parquet = pq.ParquetFile(path)
+for name in TABLES:
+    path = DATA_DIR / f"{name}.parquet"
 
-        print(f"\n{'=' * 60}")
-        print(f"TABLE: {table}")
-        print(f"ROWS: {parquet.metadata.num_rows:,}")
-        print(f"COLUMNS: {parquet.metadata.num_columns}")
+    if not path.exists():
+        lines.append(f"MISSING: {path}")
+        continue
 
-        for field in parquet.schema_arrow:
-            print(f"  {field.name}: {field.type}")
+    pf = pq.ParquetFile(path)
 
-if __name__ == "__main__":
-    main()
+    lines.append(f"\n{'=' * 60}")
+    lines.append(f"TABLE: {name}")
+    lines.append(f"ROWS: {pf.metadata.num_rows:,}")
+    lines.append(f"COLUMNS: {pf.metadata.num_columns}")
+
+    for field in pf.schema_arrow:
+        lines.append(f"{field.name}: {field.type}")
+
+OUTPUT.write_text("\n".join(lines), encoding="utf-8")
+
+print(f"Inspection complete: {OUTPUT}")
+
+for name in TABLES:
+    path = DATA_DIR / f"{name}.parquet"
+    if path.exists():
+        pf = pq.ParquetFile(path)
+        print(f"{name}: {pf.metadata.num_rows:,} rows")
+    else:
+        print(f"{name}: MISSING")
