@@ -1,0 +1,15 @@
+dimension,signal,total_specs,valid_values,missing_values,specs_with_signal,percentage
+Completeness,has_requirements,16150,16150,0,15703,97.23
+Completeness,has_purpose,16150,16150,0,3666,22.7
+Completeness,has_dependencies,16150,16150,0,1043,6.46
+Completeness,has_non_goals,16150,16150,0,254,1.57
+Completeness,has_out_of_scope,16150,16150,0,925,5.73
+Completeness,has_edge_cases,16150,16150,0,1412,8.74
+Verifiability,has_acceptance_criteria,16150,16150,0,369,2.28
+Verifiability,has_success_criteria,16150,16150,0,1530,9.47
+Verifiability,has_gherkin,16150,16150,0,14357,88.9
+Verifiability,n_scenario_blocks,16150,16150,0,13610,84.27
+Unresolved information,n_todo,16150,16150,0,1375,8.51
+Unresolved information,has_open_questions,16150,16150,0,148,0.92
+Unresolved information,n_needs_clarification,16150,16150,0,99,0.61
+Unresolved information,has_unfilled_placeholder,16150,16150,0,1471,9.11
