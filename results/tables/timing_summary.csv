@@ -1,0 +1,5 @@
+timing_class,spec_pr_entries,percentage
+captured_last_commit_before_pr,7408,32.55
+existed_before_pr_but_later_edits,6451,28.35
+first_recorded_after_pr,8895,39.09
+inconsistent_dates,2,0.01

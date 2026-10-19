@@ -1,22 +1,36 @@
-# Local dataset (too large for GitHub)
-data/*
-!data/README_DATA.txt
-
-# Python environment
+# Python virtual environments
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Local configuration
+# Environment variables and credentials
 .env
 .env.*
 !.env.example
 
-# Editor and system files
+# Original SpecMine datasets
+data/
+!data/.gitkeep
+
+# Generated experiment results
+results/tables/*.csv
+results/logs/
+results/final_audit.json
+
+# Keep small, verified summary tables
+!results/tables/timing_summary.csv
+!results/tables/rq1_signal_frequencies.csv
+!results/tables/rq2_associations.csv
+!results/tables/rq2_robustness_results.csv
+!results/tables/historical_version_summary.csv
+!results/tables/historical_feature_agreement.csv
+
+# Keep figures for the research paper
+# Do not ignore results/figures/
+
+# Editor and operating system files
 .vscode/
+.idea/
 .DS_Store
 Thumbs.db
-
-# Temporary analysis files
-*.tmp
-.ipynb_checkpoints/
