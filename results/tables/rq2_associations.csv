@@ -1,0 +1,29 @@
+dimension,signal,group,n_prs,n_code_changed,code_change_rate_pct,n_code_change_prs_with_count,median_code_files,mean_code_files
+Completeness,has_requirements,Absent,305,240,78.69,240,11.0,51.21
+Completeness,has_requirements,Present,5420,4398,81.14,4398,11.0,33.42
+Completeness,has_purpose,Absent,3384,2719,80.35,2719,12.0,34.3
+Completeness,has_purpose,Present,2341,1919,81.97,1919,10.0,34.4
+Completeness,has_dependencies,Absent,4771,3911,81.97,3911,10.0,28.85
+Completeness,has_dependencies,Present,954,727,76.21,727,18.0,63.87
+Completeness,has_non_goals,Absent,5473,4485,81.95,4485,11.0,34.18
+Completeness,has_non_goals,Present,252,153,60.71,153,13.0,38.86
+Completeness,has_out_of_scope,Absent,4858,4028,82.91,4028,11.0,32.67
+Completeness,has_out_of_scope,Present,867,610,70.36,610,13.0,45.37
+Completeness,has_edge_cases,Absent,4357,3538,81.2,3538,10.0,31.55
+Completeness,has_edge_cases,Present,1368,1100,80.41,1100,16.0,43.29
+Verifiability,has_acceptance_criteria,Absent,5417,4457,82.28,4457,11.0,34.58
+Verifiability,has_acceptance_criteria,Present,308,181,58.77,181,12.0,28.39
+Verifiability,has_success_criteria,Absent,4326,3492,80.72,3492,10.0,31.97
+Verifiability,has_success_criteria,Present,1399,1146,81.92,1146,14.5,41.55
+Verifiability,has_gherkin,Absent,1276,1004,78.68,1004,14.0,41.84
+Verifiability,has_gherkin,Present,4449,3634,81.68,3634,10.0,32.27
+Verifiability,n_scenario_blocks,Absent,2074,1604,77.34,1604,13.0,39.38
+Verifiability,n_scenario_blocks,Present,3651,3034,83.1,3034,10.0,31.67
+Unresolved information,n_todo,Absent,4803,3880,80.78,3880,11.0,28.84
+Unresolved information,n_todo,Present,922,758,82.21,758,13.5,62.48
+Unresolved information,has_open_questions,Absent,5560,4526,81.4,4526,11.0,34.26
+Unresolved information,has_open_questions,Present,165,112,67.88,112,17.0,37.51
+Unresolved information,n_needs_clarification,Absent,5648,4576,81.02,4576,11.0,33.88
+Unresolved information,n_needs_clarification,Present,77,62,80.52,62,22.5,67.84
+Unresolved information,has_unfilled_placeholder,Absent,4734,3824,80.78,3824,11.0,28.25
+Unresolved information,has_unfilled_placeholder,Present,991,814,82.14,814,14.0,62.93
