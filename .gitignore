@@ -34,3 +34,11 @@ results/final_audit.json
 .idea/
 .DS_Store
 Thumbs.db
+
+# Retrieved historical repository content
+data/historical_specs/
+
+# Record-level historical retrieval metadata
+results/tables/historical_retrieval_results.csv
+results/tables/historical_retrieval_manifest.csv
+results/tables/historical_version_audit.csv
