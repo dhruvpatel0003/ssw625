@@ -179,7 +179,7 @@ results/phase3/timing_sensitivity_populations.csv
 results/phase3/timing_sensitivity_rq2.csv
 ```
 
-The **verified Script 14 output schema** uses population labels `all_matched`, `all_specs_pre_pr`, and `all_specs_consistent_pre_pr`. Its comparison CSV uses `rate_difference_present_minus_absent`, `code_change_rate_present`, `code_change_rate_absent`, `median_outside_code_files_present`, and `median_outside_code_files_absent` (among other columns). Do **not** rename these to `rate_difference` or to labels ending in `_history` unless you also update downstream scripts.
+The **submitted Scripts 14 and 16 (verified together on the bundled data)** use population labels `all_matched`, `all_specs_pre_pr_history`, and `all_specs_consistent_pre_pr_history`. Script 14 emits `rate_present`, `rate_absent`, `rate_difference`, `median_files_present_code_changing`, and `median_files_absent_code_changing`. Script 16 expects these exact names. An older `results/tables/timing_sensitivity_rq2.csv` uses a different schema (`rate_difference_present_minus_absent` and population labels without `_history`); do not substitute that older file for the regenerated `results/phase3/timing_sensitivity_rq2.csv`.
 
 The conservative restrictions require **all matched specs for a PR** to satisfy the historical criterion. Earlier results reported 5,725 PRs in the full population, 2,234 in the pre-PR-history subset, and 1,906 in the consistent-history subset; recheck against your own generated summary. These are **sensitivity subsets**, not proof of historical feature availability or causal ordering.
 
@@ -205,18 +205,18 @@ python scripts/16_interpretation_review.py
 
 Expected output: `results/phase3/interpretation_review.csv`.
 
-**Known compatibility fix:** The earlier Script 16 draft expected `rate_difference` and population labels ending in `_history`, which do **not** match the verified Script 14 output. Use:
+**Verified compatibility:** The uploaded Script 16 correctly expects the schema emitted by uploaded Script 14. Its configuration is:
 
 ```python
-metric = "rate_difference_present_minus_absent"
+metric = "rate_difference"
 population_order = [
     "all_matched",
-    "all_specs_pre_pr",
-    "all_specs_consistent_pre_pr",
+    "all_specs_pre_pr_history",
+    "all_specs_consistent_pre_pr_history",
 ]
 ```
 
-Script 16 flags directional changes and small groups; its group-size threshold is an exploratory warning, **not** a statistical significance test. Confirm the script runs and inspect the generated CSV before describing it as complete.
+Script 16 flags directional changes and small groups; its group-size threshold is an exploratory warning, **not** a statistical significance test. The uploaded Scripts 14 and 16 were executed together successfully on the ZIP-bundled tables, producing 42 timing comparisons and 14 interpretation rows. This verifies this downstream pair, not the complete 01–16 pipeline.
 
 ## 12. White-box diagrams and figures
 
@@ -273,8 +273,8 @@ Before submission, independently verify:
 |---|---|
 | `FileNotFoundError` | Run from project root; confirm `data/` and `results/tables/` filenames. |
 | `ModuleNotFoundError` | Activate the correct virtual environment and install the missing package. |
-| Script 16 reports missing `rate_difference_present_minus_absent` | Inspect Script 14 output headers; use the actual schema rather than guessing. |
-| Script 16 reports missing population | Check labels in `timing_sensitivity_rq2.csv`; use `all_specs_pre_pr` and `all_specs_consistent_pre_pr` if those are the emitted values. |
+| Script 16 reports missing `rate_difference` | Run the uploaded Script 14 first; do not use the older `results/tables/timing_sensitivity_rq2.csv` with a different schema. |
+| Script 16 reports missing population | Use the regenerated `results/phase3/timing_sensitivity_rq2.csv`, whose labels end in `_history`. |
 | Script 14 fails a uniqueness or coverage assertion | Inspect duplicate PR/spec keys and unmatched history records; do not suppress the assertion without auditing. |
 | GitHub retrieval fails or returns incomplete results | Check network access, rate limits, token permissions, and pilot sample size. |
 | Output differs from reported numbers | Record dataset version, input hashes, code revision, parameters, and any filtering changes before interpreting differences. |
@@ -284,21 +284,6 @@ Before submission, independently verify:
 - Full manual validation remains incomplete; preliminary labels are not established accuracy estimates.
 - Historical feature extraction is a pilot and not demonstrated equivalent to the source extractor.
 - Timing restrictions do not establish that signals preceded implementation.
-- The complete-match RQ2 sensitivity comparison and repository-aware robustness configuration need final verification.
+- The complete-match RQ2 sensitivity comparison remains pending. The repository-bootstrap configuration and generated robustness output should be checked together before final reporting.
 - Reproduction must be tested on the actual repository; this README alone does not prove it works.
 - Final report and README narrative must comply with the course's original-writing requirements; the team should review, revise, and take responsibility for all submitted text.
-
-## 17. Submission checklist
-
-- [ ] Confirm actual scripts 01–16 and remove references to missing files.
-- [ ] Pin and test `requirements.txt`.
-- [ ] Document dataset version and download instructions.
-- [ ] Reproduce core RQ1/RQ2 tables and figures.
-- [ ] Reproduce timing and matching audits.
-- [ ] Verify bootstrap configuration and results.
-- [ ] Document manual-review coverage and evidence honestly.
-- [ ] Include and verify white-box diagrams.
-- [ ] Check Related Work sources and four validity categories.
-- [ ] Confirm all report numbers against generated CSVs.
-- [ ] Test reproduction instructions from a fresh environment.
-- [ ] Review academic-integrity and submission requirements.
