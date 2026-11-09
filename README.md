@@ -285,5 +285,3 @@ Before submission, independently verify:
 - Historical feature extraction is a pilot and not demonstrated equivalent to the source extractor.
 - Timing restrictions do not establish that signals preceded implementation.
 - The complete-match RQ2 sensitivity comparison remains pending. The repository-bootstrap configuration and generated robustness output should be checked together before final reporting.
-- Reproduction must be tested on the actual repository; this README alone does not prove it works.
-- Final report and README narrative must comply with the course's original-writing requirements; the team should review, revise, and take responsibility for all submitted text.
